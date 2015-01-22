@@ -228,8 +228,6 @@ License: GPLv2
         $valueInputName  = "";
         $valueInputId    = "";
 
-        echo("<div class='wrap'><h2>Añadir un nuevo banner</h2></div>"); 
-
         if(isset($_POST['action']) && $_POST['action'] == 'salvaropciones'){
 
             //si el input idBanner (hidden) está vacio, se trata de un nuevo registro
@@ -256,6 +254,8 @@ License: GPLv2
 
             switch ($task) {
                 case 'edit_banners':
+                    echo("<div class='wrap'><h2>Modificar información del banner</h2></div>"); 
+
                     $row = opg_plugin_banners_getId($id);
                     $valueInputUrl   = $row->url;
                     $valueInputName  = $row->name;
@@ -266,6 +266,7 @@ License: GPLv2
                     opg_banners_remove($id);
                     break;
                 default:
+                    echo("<div class='wrap'><h2>Añadir un nuevo banner</h2></div>"); 
                     break;
             }
         }
