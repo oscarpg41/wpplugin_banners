@@ -26,7 +26,7 @@ License: GPLv2
         add_action('admin_print_scripts', 'my_admin_scripts_banners');
         add_action('admin_print_styles', 'my_admin_styles_banners');
     }
-
+    // cargador de medios de wordpress
 
 
 
@@ -49,13 +49,13 @@ License: GPLv2
 
         $sql = 'CREATE TABLE IF NOT EXISTS `' . $wpdb->prefix . 'opg_plugin_banners` 
             ( `idBanner` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY , 
-              `name` VARCHAR( 100 ) NOT NULL , 
+              `name` VARCHAR( 100 ) COLLATE utf8_spanish_ci NOT NULL, 
               `url` VARCHAR( 140 ) NOT NULL,
-              `image` VARCHAR( 140 ) NOT NULL )';
+              `image` VARCHAR( 140 ) NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci';
         $wpdb->query($sql);
     }
 
-    // Se borra la tabla al desactivar el plugin
+    // Se borra la tabla al desisntalar el plugin
     function opg_plugin_banners_uninstall() {
         global $wpdb;
         $sql = 'DROP TABLE `' . $wpdb->prefix . 'opg_plugin_banners`';
