@@ -133,6 +133,7 @@ License: GPLv2
             exit;
         }
 
+        //Actualizamos la información de la imagen
         if ( isset($image) && (strlen($image)>0) ){
             $update_or_no = $wpdb->update($wpdb->prefix . 'opg_plugin_banners', 
                 array('name' => esc_js(trim ($name)), 'url' => trim ($url), 'image' => $image),
@@ -140,6 +141,7 @@ License: GPLv2
                 array('%s', '%s', '%s')
             );
         }
+        //Si no se ha modificado la imagen, no actualizamos la información de la imagen ya guardada
         else{
             $update_or_no = $wpdb->update($wpdb->prefix . 'opg_plugin_banners', 
                 array('name' => esc_js(trim ($name)), 'url' => trim ($url)),
@@ -202,8 +204,8 @@ License: GPLv2
                     <td><?php echo( $banner->name ); ?></td>
                     <td><?php echo( $banner->url ); ?></td>
                     <td><img src="<?php echo $banner->image ?>" width="150px"></td>
-                    <td><a href="admin.php?page=opg_banners&amp;task=edit_banners&amp;id=<?php echo( $banner->idBanner ); ?>"><img src="<?php echo WP_PLUGIN_URL.'/opg_aside/img/modificar.png'?>" alt="Modificar"></a></td>
-                    <td><a href="#"><img src="<?php echo WP_PLUGIN_URL.'/opg_aside/img/papelera.png'?>" alt="Borrar" id="<?php echo( $banner->idBanner ); ?>" class="btnDeleteBanner"></a></td>
+                    <td><a href="admin.php?page=opg_banners&amp;task=edit_banners&amp;id=<?php echo( $banner->idBanner ); ?>"><img src="<?php echo WP_PLUGIN_URL.'/opg_banners/img/modificar.png'?>" alt="Modificar"></a></td>
+                    <td><a href="#"><img src="<?php echo WP_PLUGIN_URL.'/opg_opg_banners/img/papelera.png'?>" alt="Borrar" id="<?php echo( $banner->idBanner ); ?>" class="btnDeleteBanner"></a></td>
                 </tr>
 <?php                
             }
