@@ -1,0 +1,45 @@
+.bn-list {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat( var( --bn-columnas, 1 ), 1fr );
+	gap: 16px;
+	align-items: center;
+	justify-items: center;
+}
+
+.bn-item {
+	margin: 0;
+	width: 100%;
+}
+
+.bn-link {
+	display: block;
+	text-decoration: none;
+	transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.bn-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 6px;
+}
+
+.bn-link:hover,
+.bn-link:focus {
+	transform: translateY( -2px );
+	box-shadow: 0 4px 12px rgba( 0, 0, 0, .12 );
+}
+
+.bn-empty {
+	font-style: italic;
+	opacity: .8;
+}
+
+@media ( max-width: 600px ) {
+	.bn-list {
+		grid-template-columns: 1fr;
+	}
+}
