@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul style="--bn-columnas: <?php echo esc_attr( $columnas ); ?>;">
+<ul class="banners" style="--bn-columnas: <?php echo esc_attr( $columnas ); ?>;">
 	<?php foreach ( $banners as $banner ) : ?>
 		<li class="banner">
 			<a href="<?php echo esc_url( $banner->url ); ?>"<?php echo ( 1 === (int) $banner->target ) ? ' target="_blank" rel="noopener noreferrer"' : ''; ?> title="<?php echo esc_attr( $banner->name ); ?>">
