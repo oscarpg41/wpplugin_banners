@@ -72,19 +72,21 @@ function bn_render_admin_page() {
 	}
 
 	$values = array(
-		'id'    => 0,
-		'name'  => '',
-		'url'   => '',
-		'image' => '',
+		'id'     => 0,
+		'name'   => '',
+		'url'    => '',
+		'image'  => '',
+		'target' => 0,
 	);
 
 	if ( isset( $_POST['bn_action'] ) && 'save' === $_POST['bn_action'] ) {
 		check_admin_referer( 'bn_save_banner', 'bn_nonce' );
 
 		$data = array(
-			'name'  => isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '',
-			'url'   => isset( $_POST['url'] ) ? bn_normalize_url( wp_unslash( $_POST['url'] ) ) : '',
-			'image' => isset( $_POST['upload_image'] ) ? esc_url_raw( wp_unslash( $_POST['upload_image'] ) ) : '',
+			'name'   => isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '',
+			'url'    => isset( $_POST['url'] ) ? bn_normalize_url( wp_unslash( $_POST['url'] ) ) : '',
+			'image'  => isset( $_POST['upload_image'] ) ? esc_url_raw( wp_unslash( $_POST['upload_image'] ) ) : '',
+			'target' => isset( $_POST['target'] ) ? 1 : 0,
 		);
 
 		$id = isset( $_POST['idBanner'] ) ? absint( $_POST['idBanner'] ) : 0;
@@ -106,10 +108,11 @@ function bn_render_admin_page() {
 
 		if ( $row ) {
 			$values = array(
-				'id'    => $id,
-				'name'  => $row->name,
-				'url'   => $row->url,
-				'image' => $row->image,
+				'id'     => $id,
+				'name'   => $row->name,
+				'url'    => $row->url,
+				'image'  => $row->image,
+				'target' => (int) $row->target,
 			);
 		}
 	} elseif ( isset( $_GET['task'], $_GET['id'] ) && 'remove_banners' === $_GET['task'] ) {

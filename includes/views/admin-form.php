@@ -55,6 +55,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</td>
 				</tr>
 				<tr>
+					<th><label for="bn_target"><?php esc_html_e( 'Abrir enlace', 'opg-banners' ); ?></label></th>
+					<td>
+						<label>
+							<input type="checkbox" name="target" id="bn_target" value="1" <?php checked( 1, (int) $values['target'] ); ?>>
+							<?php esc_html_e( 'Abrir en una pestaña nueva', 'opg-banners' ); ?>
+						</label>
+						<p class="description">
+							<?php esc_html_e( 'Si se desmarca, el enlace se abre en la misma pestaña.', 'opg-banners' ); ?>
+						</p>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2" style="text-align:center; padding-top: 20px;">
 						<input type="submit" class="button button-primary button-hero" value="<?php esc_attr_e( 'Enviar', 'opg-banners' ); ?>">
 					</td>

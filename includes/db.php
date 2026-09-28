@@ -31,6 +31,7 @@ function bn_create_table() {
 		name VARCHAR(100) NOT NULL,
 		url VARCHAR(140) NOT NULL,
 		image VARCHAR(255) NOT NULL,
+		target TINYINT(1) NOT NULL DEFAULT 0,
 		PRIMARY KEY  (idBanner),
 		KEY name (name)
 	) {$charset_collate};";
@@ -48,11 +49,12 @@ function bn_save_banner( $data ) {
 	return $wpdb->insert(
 		bn_table_name(),
 		array(
-			'name'  => $data['name'],
-			'url'   => $data['url'],
-			'image' => $data['image'],
+			'name'   => $data['name'],
+			'url'    => $data['url'],
+			'image'  => $data['image'],
+			'target' => $data['target'],
 		),
-		array( '%s', '%s', '%s' )
+		array( '%s', '%s', '%s', '%d' )
 	);
 }
 
@@ -64,10 +66,11 @@ function bn_update_banner( $id, $data ) {
 	global $wpdb;
 
 	$fields  = array(
-		'name' => $data['name'],
-		'url'  => $data['url'],
+		'name'   => $data['name'],
+		'url'    => $data['url'],
+		'target' => $data['target'],
 	);
-	$formats = array( '%s', '%s' );
+	$formats = array( '%s', '%s', '%d' );
 
 	if ( isset( $data['image'] ) && '' !== $data['image'] ) {
 		$fields['image'] = $data['image'];
@@ -100,7 +103,7 @@ function bn_get_banner( $id ) {
 
 	return $wpdb->get_row(
 		$wpdb->prepare(
-			"SELECT idBanner, name, url, image FROM {$table} WHERE idBanner = %d",
+			"SELECT idBanner, name, url, image, target FROM {$table} WHERE idBanner = %d",
 			absint( $id )
 		)
 	);
@@ -114,6 +117,6 @@ function bn_get_banners() {
 	$table = bn_table_name();
 
 	return $wpdb->get_results(
-		"SELECT idBanner, name, url, image FROM {$table} ORDER BY name ASC"
+		"SELECT idBanner, name, url, image, target FROM {$table} ORDER BY name ASC"
 	);
 }
